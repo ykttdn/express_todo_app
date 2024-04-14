@@ -1,17 +1,19 @@
 import express from "express";
-
+import cors from "cors";
 const app = express();
 const PORT = 3000;
 
-app.get("/", (_, res) => {
+app.use(cors({ origin: "http://localhost:5173", optionsSuccessStatus: 200 }));
+
+app.get("/api/", (_, res) => {
   res.send("Hello world");
 });
 
-app.get("/todos", (_, res) => {
+app.get("/api/todos", (_, res) => {
   const todos = [
-    { id: 1, name: "buy eggs" },
-    { id: 2, name: "clean the kitchen" },
-    { id: 3, name: "wash the clothes" },
+    { id: 1, todo: "buy eggs" },
+    { id: 2, todo: "clean the kitchen" },
+    { id: 3, todo: "wash the clothes" },
   ];
 
   res.json(todos);
